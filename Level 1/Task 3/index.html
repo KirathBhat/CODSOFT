@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .calculator{
+            width: 300px;
+            height: 400px;
+            background-color: #303030;
+            background-size: cover;
+            position: relative;
+            border-radius: 20px;
+            border: 15px solid black;
+        }
+        .screen{
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            width: 220px;
+            height: 50px;
+            background-color: #2689ad;
+            border-radius: 5px;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 2rem;
+            line-height: 50px;
+            border: 3px solid white;
+        }
+        .button{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .button:active{
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* Position buttons (hope it works)*/
+        .one{ 
+            top: 120px; 
+            left: 40px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .two{
+            top: 120px; 
+            left: 100px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .three{
+            top: 120px; 
+            left: 160px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .divide{
+            top: 120px;
+            left: 220px;
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .four{ 
+            top: 180px; 
+            left: 40px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .five{ 
+            top: 180px; 
+            left: 100px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .six{ 
+            top: 180px; 
+            left: 160px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .multiply{ 
+            top: 180px; 
+            left: 220px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        
+        }
+        .seven{ 
+            top: 240px; 
+            left: 40px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .eight{ 
+            top: 240px; 
+            left: 100px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .nine{ 
+            top: 240px; 
+            left: 160px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .minus{ 
+            top: 240px; 
+            left: 220px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .clear{ 
+            top: 300px; 
+            left: 40px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .zero{ 
+            top: 300px; 
+            left: 100px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .plus{ 
+            top: 300px; 
+            left: 160px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+        .equals{ 
+            top: 300px; 
+            left: 220px; 
+            background-color: #dc8038;
+            border-radius: 5px;
+        }
+    </style>
+    <!---I AINT USING NO GRIDS--->
+</head>
+<body>
+
+<div class="calculator">
+    <div class="screen" id="screen">0</div>
+    <button class="button one" onclick="appendNumber(1)">1</button>
+    <button class="button two" onclick="appendNumber(2)">2</button>
+    <button class="button three" onclick="appendNumber(3)">3</button>
+    <button class="button divide" onclick="setOperation('/')">÷</button>
+
+    <button class="button four" onclick="appendNumber(4)">4</button>
+    <button class="button five" onclick="appendNumber(5)">5</button>
+    <button class="button six" onclick="appendNumber(6)">6</button>
+    <button class="button multiply" onclick="setOperation('*')">×</button>
+
+    <button class="button seven" onclick="appendNumber(7)">7</button>
+    <button class="button eight" onclick="appendNumber(8)">8</button>
+    <button class="button nine" onclick="appendNumber(9)">9</button>
+    <button class="button minus" onclick="setOperation('-')">-</button>
+
+    <button class="button clear" onclick="clearScreen()">AC</button>
+    <button class="button zero" onclick="appendNumber(0)">0</button>
+    <button class="button equals" onclick="calculate()">=</button>
+    <button class="button plus" onclick="setOperation('+')">+</button>
+</div>
+<!--- WORKING! oof do not change classes now :')--->
+<script>
+    let currentNumber = '';
+    let previousNumber = '';
+    let operation = '';
+    const maxDigits = 14;
+
+    function appendNumber(number) {
+        if (currentNumber.length >= maxDigits) {
+            showError("MAX 14 Digits");
+            return;
+        }
+        if (currentNumber === '0' && number === 0) return;
+        currentNumber = currentNumber === '0' ? number.toString() : currentNumber + number.toString();
+        updateScreen();
+    }
+
+    function setOperation(op) {
+        if (currentNumber === '') return;
+        if (previousNumber !== '') {
+            calculate();
+        }
+        operation = op;
+        previousNumber = currentNumber;
+        currentNumber = '';
+    }
+
+    function calculate() {
+        let result;
+        const prev = parseFloat(previousNumber);
+        const current = parseFloat(currentNumber);
+
+        if (isNaN(prev) || isNaN(current)) return;
+
+        switch (operation) {
+            case '+':
+                result = prev + current;
+                break;
+            case '-':
+                result = prev - current;
+                break;
+            case '*':
+                result = prev * current;
+                break;
+            case '/':
+                result = prev / current;
+                break;
+            default:
+                return;
+        }
+
+        if (result.toString().length > maxDigits) {
+            showError("Digit Limit Exceeded");
+            return;
+        }
+
+        currentNumber = result.toString();
+        operation = '';
+        previousNumber = '';
+        updateScreen();
+    }
+
+    function clearScreen() {
+        currentNumber = '0';
+        previousNumber = '';
+        operation = '';
+        updateScreen();
+    }
+
+    function updateScreen() {
+        document.getElementById('screen').innerText = currentNumber;
+    }
+
+    function showError(message) {
+        document.getElementById('screen').innerText = message;
+        setTimeout(() => {
+            clearScreen();
+        }, 2000);  // completed oof //
+    }
+</script>
+    
+
+</body>
+</html>
