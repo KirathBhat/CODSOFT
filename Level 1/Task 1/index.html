@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            color: white;
+            background-color: #202020;
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+                
+            
+        }
+        nav ul li a{
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            font-style: bold;
+            color: white;
+            
+        }
+        nav{
+            display: inline-block;
+            
+            
+
+        }
+        nav ul li{
+            display: inline-block;
+            text-align: center;
+            padding: 12px;
+            font-style: bold;
+        }
+        #about img{
+            border-radius: 100px;
+            height: 14%;
+            width: auto;
+            position: absolute;
+            right: 0px;
+            border: 6px solid white;
+        }
+        #about p{
+            margin-right: 35%;
+            font-size: 1.2em;
+            line-height: 1.1em;
+        }
+        .image{
+            height: 120px;
+            width: auto;
+            display: inline;
+        }
+        #skills{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0px;
+            
+            text-align: center;
+            background-color: #303030;
+            padding-top: 10px;
+            border: 2px solid white;
+            border-radius: 10px 0 10px 0
+        }
+        #skih2{
+            margin-top: 50px;
+        }
+        #skih3{
+            margin-top: 50px;
+        }
+        .p1{
+            border-radius: 10px;
+            height: auto;
+            width: 406px;
+        }
+        .r1{
+            margin-top: 50px;
+        }
+        .r2{
+            margin-top: 50px;
+        }
+        .copy{
+            margin-top: 50px;
+            text-align: center;
+        }
+        .last{
+            text-decoration: none;
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr>
+    <section id="about">
+        <h2>About Me</h2>
+        
+        <img src="/asset/dp.jpg">
+        <p><strong>👋🏻 Hey! I am a newbie programmer who has a major interest in frontend and backend website development. I also am an AvGeek and doing my best to learn the web structure!</strong></p>
+    </section>
+    <h2 id="skih2">Skills</h2>
+    <div id="skills">
+        
+        <div class="skil1">
+            <img src="/asset/html.png" class="image">
+            HTML
+        </div>
+
+        <div class="skil2">
+            <img src="/asset/css.png" class="image">
+            CSS
+        </div>
+        
+        <div class="skil3">
+            <img src="/asset/js.png" class="image">
+            JavaScript
+        </div>
+
+    </div>
+    <section id="projects">
+        <h2 id="skih3">Projects</h2>
+        <div class="project">
+            <div class="p2">
+                <a href="https://github.com/kirathbhat/amazon-webpage"><img src="/asset/p1.jpg" class="p1"></a>
+            </div>
+            <div class="p2">
+                <a href="https://github.com/kirathbhat/mobile-oriented-gym-webpage"><img src="/asset/p2.jpg" class="p1"></a>
+            </div>
+        </div>
+    </section>
+    <section id="resume">
+        <h2 class="r1">Resume</h2>
+        <p>Download my resume: <a href="#" class="last">Download PDF</a></p>
+    </section>
+    <section id="contact">
+        <h2 class="r2">Contact</h2>
+        <p>Feel free to reach out to me at kirathbhat7@gmail.com or connect with me on LinkedIn at <a href="https://in.linkedin.com/in/kirath-bhat-1437b531b" class="last">here</a>.</p>
+    </section>
+    <footer>
+        <p class="copy">&copy; 2024 :/CODSOFT/Kirath</p>
+    </footer>
+</body>
+</html>
